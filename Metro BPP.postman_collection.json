@@ -1,0 +1,87 @@
+{
+	"info": {
+		"_postman_id": "9ae398b1-618a-4a17-82f7-21ca8bb43d9d",
+		"name": "Metro BPP",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Search by station codes",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"context\": {\n        \"domain\": \"mobility\",\n        \"country\": \"IND\",\n        \"city\": \"std:484\",\n        \"action\": \"search\",\n        \"core_version\": \"0.9.3\",\n        \"bap_id\": \"Test BAP\",\n        \"bap_uri\": \"https://beckn.free.beeceptor.com\",\n        \"bpp_id\": \"Metro BPP\",\n        \"bpp_uri\": \"http://13.235.139.60/metro/bpp\",\n        \"transaction_id\": \"12391830183\",\n        \"message_id\": \"2131030183\",\n        \"timestamp\": \"2021-09-29T09:55:41.161Z\"\n    },\n    \"message\": {\n        \"intent\": {\n            \"fulfillment\": {\n                \"start\": {\n                    \"location\": {\n                        \"station_code\": \"PARV\"\n                    },\n                    \"time\": {\n                        \"label\": \"start_time\",\n                        \"timestamp\": \"2021-09-29T09:55:41.161Z\"\n                    }\n                },\n                \"end\": {\n                    \"location\": {\n                        \"station_code\": \"TNHL\"\n                    }\n                }\n            }\n        }\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base-url}}/search",
+					"host": [
+						"{{base-url}}"
+					],
+					"path": [
+						"search"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Search by location gps",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"context\": {\n        \"domain\": \"mobility\",\n        \"country\": \"IND\",\n        \"city\": \"std:484\",\n        \"action\": \"search\",\n        \"core_version\": \"0.9.3\",\n        \"bap_id\": \"Test BAP\",\n        \"bap_uri\": \"https://beckn.free.beeceptor.com\",\n        \"bpp_id\": \"Metro BPP\",\n        \"bpp_uri\": \"http://13.235.139.60/metro/bpp\",\n        \"transaction_id\": \"12391830183\",\n        \"message_id\": \"2131030183\",\n        \"timestamp\": \"2021-09-29T09:55:41.161Z\"\n    },\n    \"message\": {\n        \"intent\": {\n            \"fulfillment\": {\n                \"start\": {\n                    \"location\": {\n                        \"gps\": \"10.102997, 76.353480\"\n                    },\n                    \"time\": {\n                        \"label\": \"start_time\",\n                        \"timestamp\": \"2021-09-29T09:55:41.161Z\"\n                    }\n                },\n                \"end\": {\n                    \"location\": {\n                        \"gps\": \"10.046584, 76.316871\"\n                    }\n                }\n            }\n        }\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base-url}}/search",
+					"host": [
+						"{{base-url}}"
+					],
+					"path": [
+						"search"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "base-url",
+			"value": ""
+		}
+	]
+}

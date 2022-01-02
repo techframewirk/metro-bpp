@@ -1,0 +1,32 @@
+{
+    "context": {
+        "domain": "mobility",
+        "country": "IND",
+        "city": "std:484",
+        "action": "search",
+        "core_version": "0.9.3",
+        "bap_id": "Kochi1",
+        "bap_uri": "string",
+        "bpp_id": "metro",
+        "bpp_uri": "localhost:8000/search",
+        "transaction_id": "12391830183",
+        "message_id": "2131030183",
+        "timestamp": "2021-09-29T09:55:41.161Z"
+    },
+    "message": {
+        "intent": {
+            "fulfillment": {
+                "start": {
+                    "location": {
+                        "gps": "string"
+                    }
+                },
+                "end": {
+                    "location": {
+                        "gps": "string"
+                    }
+                }
+            }
+        }
+    }
+}

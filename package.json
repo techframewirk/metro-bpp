@@ -1,0 +1,42 @@
+{
+  "name": "metro_bpp",
+  "version": "1.0.0",
+  "description": "BPP for Kochi Metro Rail Limited",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "env-cmd -f ./config/prod.env node dist/src/index.js",
+    "build": "tsc -p .",
+    "dev": "env-cmd -f ./config/dev.env nodemon --config nodemon.json src/index.ts",
+    "dev:debug": "env-cmd -f ./config/dev.env nodemon --config nodemon.json --inspect-brk src/index.ts",
+    "init_ts": "npx tsc --init && tslint --init"
+  },
+  "author": "Nirmal",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.21.4",
+    "axios-curlirize": "^2.0.0",
+    "cors": "^2.8.5",
+    "csvtojson": "^2.0.10",
+    "express": "^4.17.1",
+    "libsodium-wrappers": "^0.7.9",
+    "lodash": "^4.17.21",
+    "nconf": "^0.11.3",
+    "reflect-metadata": "^0.1.13",
+    "sequelize": "^6.6.5",
+    "sequelize-typescript": "^2.1.0",
+    "sqlite3": "^4.2.0"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.12",
+    "@types/express": "^4.17.13",
+    "@types/libsodium-wrappers": "^0.7.9",
+    "@types/lodash": "^4.14.175",
+    "@types/nconf": "^0.10.1",
+    "@types/node": "^16.10.2",
+    "env-cmd": "^10.1.0",
+    "nodemon": "^2.0.13",
+    "ts-node": "^10.2.1",
+    "tslint": "^6.1.3",
+    "typescript": "^4.4.3"
+  }
+}

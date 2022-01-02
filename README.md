@@ -1,7 +1,7 @@
 # Metro BPP
 
 Metro BPP that reads static GTFS data from metro-Open-Data folder and returns catalog of available tickets between stations including the schedule and fare.
-The Metro BPP takes in the start and end GPS coordinates, finds the closest metro stations to the coordinates and returns ticket information for trips between the them. Current implementation works only for start and end stations within the same trip in the GTFS data.
+The Metro BPP takes in the start and end GPS coordinates, finds the closest metro stations to the coordinates and returns ticket information for trips between the them. Current implementation works only for start and end stations within the same trip in the GTFS data. Only the discovery flow (`search` and `on_search`) implemented.
 
 ### Building the application using Docker 
 

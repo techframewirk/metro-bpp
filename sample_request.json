@@ -1,29 +1,27 @@
 {
     "context": {
-        "domain": "mobility",
+        "domain": "nic2004:60212",
         "country": "IND",
-        "city": "std:484",
+        "city": "",
         "action": "search",
         "core_version": "0.9.3",
-        "bap_id": "Kochi1",
-        "bap_uri": "string",
-        "bpp_id": "metro",
-        "bpp_uri": "localhost:8000/search",
+        "bap_id": "test-bap",
+        "bap_uri": "https://test-bap.com",
         "transaction_id": "12391830183",
         "message_id": "2131030183",
-        "timestamp": "2021-09-29T09:55:41.161Z"
+        "timestamp": "2022-02-12T09:55:41.161Z"
     },
     "message": {
         "intent": {
             "fulfillment": {
                 "start": {
                     "location": {
-                        "gps": "string"
+                        "gps": "10.021401, 76.306693"
                     }
                 },
                 "end": {
                     "location": {
-                        "gps": "string"
+                        "gps": "10.109684, 76.350800"
                     }
                 }
             }

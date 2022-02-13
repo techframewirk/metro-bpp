@@ -254,7 +254,6 @@ const createOnSearch = async (req: Request) => {
                 const {item,fulfillment_array} = await createItemsArray(start_code, end_code, fare, stop_times);
                 items.push(item);
                 fulfillments = fulfillments.concat(fulfillment_array);
-                console.log("here", items, fulfillments)
             }
         }
     }

@@ -251,9 +251,9 @@ const createOnSearch = async (req: Request) => {
                     const this_locations = await createLocationsArray(end_code);
                     locations = locations.concat(this_locations);
                 }
-                const {item,fulfillment} = await createItemsArray(start_code, end_code, fare, stop_times);
+                const {item,fulfillment_array} = await createItemsArray(start_code, end_code, fare, stop_times);
                 items.push(item);
-                fulfillments.push(fulfillment);
+                fulfillments = fulfillments.concat(fulfillment_array);
                 console.log("here", items, fulfillments)
             }
         }
@@ -314,9 +314,30 @@ const createItemsArray = async (from: string, to: string, fare: any, stop_times:
     const currency_type = fare.currency_type;
     var from_schedule = [];
     var to_schedule = [];
+    const fulfillment_array = [];
     for (var time of stop_times) {
         from_schedule.push(time.arrival_time);
         to_schedule.push(time.destination_time);
+        const fulfillment = {
+            "id" : item_code,
+            "start": {
+                "location" : {
+                    "id": from
+                },
+                "time": {
+                    "timestamp": time.arrival_time
+                }
+            },
+            "end": {
+                "location" : {
+                    "id": to
+                },
+                "time": {
+                    "timestamp": time.destination_time
+                }
+            }
+        }; 
+        fulfillment_array.push(fulfillment);
     }
     const item = {
         "id": "sjt",
@@ -332,30 +353,7 @@ const createItemsArray = async (from: string, to: string, fare: any, stop_times:
         "fulfillment_id": item_code,
         "matched": true
     }
-    const fulfillment = {
-        "id" : item_code,
-        "start": {
-            "location" : {
-                "id": from
-            },
-            "time": {
-                "schedule": {
-                    "times": from_schedule
-                }
-            }
-        },
-        "end": {
-            "location" : {
-                "id": to
-            },
-            "time": {
-                "schedule": {
-                    "times": to_schedule
-                }
-            }
-        }
-    }; 
-    return ({item,fulfillment});
+    return ({item,fulfillment_array});
 }
 
 const createLocationsArray = async (code: string) => {

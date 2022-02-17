@@ -55,7 +55,7 @@ const findClosestStops = async (gps: string) => {
         return [];
     }
     for (var this_stop of sortedStops.slice(1)) {
-        if ((this_stop.distance - closestStop.distance) < config.THRESHOLD_DISTANCE_KM && sortedStops.indexOf(this_stop) < config.MAX_STATIONS ) {
+        if ((this_stop.distance - closestStop.distance) < config.THRESHOLD_DISTANCE_KM && sortedStops.indexOf(this_stop) < config.MAX_STATIONS) {
             closestStops.push(this_stop.stop_id)
             console.log(this_stop.stop_id, this_stop.distance, "kms away")
         } else {
@@ -251,7 +251,7 @@ const createOnSearch = async (req: Request) => {
                     const this_locations = await createLocationsArray(end_code);
                     locations = locations.concat(this_locations);
                 }
-                const {item,fulfillment_array} = await createItemsArray(start_code, end_code, fare, stop_times);
+                const { item, fulfillment_array } = await createItemsArray(start_code, end_code, fare, stop_times);
                 items.push(item);
                 fulfillments = fulfillments.concat(fulfillment_array);
             }
@@ -263,6 +263,7 @@ const createOnSearch = async (req: Request) => {
         response.context.action = 'on_search';
         response.context.bpp_id = config.bpp_id;
         response.context.bpp_uri = config.bpp_uri;
+        const agency = await getAgencyDetails();
         response.message = {
             "catalog": {
                 "bpp/descriptor": {
@@ -270,9 +271,9 @@ const createOnSearch = async (req: Request) => {
                 },
                 "bpp/providers": [
                     {
-                        "id": "metro",
+                        "id": agency.agency_id,
                         "descriptor": {
-                            "name": "Kochi Metro Rail Limited"
+                            "name": agency.agency_name
                         },
                         "locations": locations,
                         "items": items,
@@ -318,9 +319,9 @@ const createItemsArray = async (from: string, to: string, fare: any, stop_times:
         from_schedule.push(time.arrival_time);
         to_schedule.push(time.destination_time);
         const fulfillment = {
-            "id" : item_code,
+            "id": item_code,
             "start": {
-                "location" : {
+                "location": {
                     "id": from
                 },
                 "time": {
@@ -328,21 +329,21 @@ const createItemsArray = async (from: string, to: string, fare: any, stop_times:
                 }
             },
             "end": {
-                "location" : {
+                "location": {
                     "id": to
                 },
                 "time": {
                     "timestamp": time.destination_time
                 }
             }
-        }; 
+        };
         fulfillment_array.push(fulfillment);
     }
     const item = {
         "id": "sjt",
-        "descriptor" : {
-            "name" : "Single Journey Ticket",
-            "code" : "SJT"
+        "descriptor": {
+            "name": "Single Journey Ticket",
+            "code": "SJT"
         },
         "price": {
             "currency": currency_type,
@@ -352,7 +353,7 @@ const createItemsArray = async (from: string, to: string, fare: any, stop_times:
         "fulfillment_id": item_code,
         "matched": true
     }
-    return ({item,fulfillment_array});
+    return ({ item, fulfillment_array });
 }
 
 const createLocationsArray = async (code: string) => {
@@ -382,6 +383,12 @@ const getStationDetails = async (code: string) => {
 const getAllStations = async () => {
     const stops = await Stops.findAll();
     return stops;
+}
+
+const getAgencyDetails = async () => {
+    var agency = await sequelize.query(`SELECT * FROM 'Agencies'`,
+        { type: QueryTypes.SELECT });
+    return agency[0];
 }
 
 const get_stop_times = async (start_stop: string, end_stop: string, date: string) => {

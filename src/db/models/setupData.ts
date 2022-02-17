@@ -7,7 +7,7 @@ import { FareRules } from "./FareRules.model";
 import { Stops } from "./Stops.model";
 import { StopTimes } from "./StopTimes.model";
 import { Trips } from "./Trips.model";
-
+import { Agency } from './Agency.model';
 
 //./metro-Open-Data/
 export const setupData = async (data_path: string) => {
@@ -19,9 +19,10 @@ export const setupData = async (data_path: string) => {
     Stops.destroy({ where: {} });
     StopTimes.destroy({ where: {} });
     Trips.destroy({ where: {} });
+    Agency.destroy({ where: {} });
 
-    const files = ['calendar', 'fare_attributes', 'fare_rules', 'stops', 'stop_times', 'trips']
-    const MODELS = [Calendar, FareAttributes, FareRules, Stops, StopTimes, Trips]
+    const files = ['calendar', 'fare_attributes', 'fare_rules', 'stops', 'stop_times', 'trips', 'agency']
+    const MODELS = [Calendar, FareAttributes, FareRules, Stops, StopTimes, Trips, Agency]
 
     for (let index = 0; index < files.length; index++) {
         const file_name = files[index] + '.txt';

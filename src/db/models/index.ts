@@ -4,6 +4,7 @@ import { FareRules } from "./FareRules.model";
 import { Stops } from "./Stops.model";
 import { StopTimes } from "./StopTimes.model";
 import { Trips } from "./Trips.model";
+import { Agency } from "./Agency.model";
 import { Subscribers } from "./Subscribers.model";
 
-export const MODELS = [ Calendar, FareAttributes, FareRules, Stops, StopTimes, Trips, Subscribers ]
+export const MODELS = [ Calendar, FareAttributes, FareRules, Stops, StopTimes, Trips, Subscribers, Agency ]
